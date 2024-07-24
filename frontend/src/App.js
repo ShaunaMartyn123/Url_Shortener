@@ -8,7 +8,7 @@ const App = () => {
 
   return (
       <div className="App">
-        <h1>URL Shortener</h1>
+        <h1 className={"App-header"}>URL Shortener</h1>
         <UrlForm onShorten={setShortenedUrl} />
         {shortenedUrl && (
             <div>

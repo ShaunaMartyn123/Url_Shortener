@@ -14,18 +14,21 @@ import java.util.List;
 public class UrlController {
 
     @Autowired
-    private UrlService urlService;
+    private UrlService urlService; //Inject an instance of UrlService
 
+    // Handles HTTP GET requests for "/api/urls" and returns all URLs.
     @GetMapping("/urls")
-    public List<Url> getAllUrls() {
+    public List<Url> getAllUrls() { // Calls the service method to fetch all URLs from the database.
         return urlService.getAllUrls();
     }
 
+    // Handles HTTP POST requests for "/api/shorten" to create a shortened URL.
     @PostMapping("/shorten")
     public String createShortenedUrl(@RequestParam String originalUrl) {
         return urlService.createShortenedUrl(originalUrl);
     }
 ////////////////////////////////////////////////////////////////////////////////////////
+    // Handles HTTP DELETE requests for "/api/urls/{id}" to delete a URL by its ID.
     @DeleteMapping("/urls/{id}")
     public ResponseEntity<Void> deleteUrl(@PathVariable Long id) {
         boolean deleted = urlService.deleteUrlById(id);

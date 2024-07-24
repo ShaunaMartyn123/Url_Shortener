@@ -1,29 +1,30 @@
 // src/components/UrlForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import QRCode from 'qrcode.react'; // Import QRCode component
 
 const UrlForm = ({ onShorten }) => {
-    const [originalUrl, setOriginalUrl] = useState('');
-    const [error, setError] = useState('');
+    const [originalUrl, setOriginalUrl] = useState(''); // State to hold the original URL input by the user
+    const [error, setError] = useState(''); // State to hold any error messages
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!originalUrl) {
+        if (!originalUrl) { // If the input is empty, set an error message
             setError('Please enter a URL');
             return;
         }
 
-        try {
+        try {// Make a POST request to the backend API to shorten the URL
             const response = await axios.post('http://localhost:8080/api/shorten', null, { params: { originalUrl } });
-            onShorten(response.data);
-            setOriginalUrl('');
+            onShorten(response.data);// Call the onShorten function passed as a prop with the shortened URL data
+            setOriginalUrl('');// Reset the input field and error state
             setError('');
         } catch (error) {
-            setError('Failed to shorten the URL');
+            setError('Failed to shorten the URL');// If the request fails, set an error message
         }
     };
 
-    return (
+    return ( // Form to take user input and handle submission
         <form onSubmit={handleSubmit}>
             <input
                 type="url"

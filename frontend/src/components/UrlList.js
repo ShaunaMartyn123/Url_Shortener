@@ -4,11 +4,13 @@ import axios from 'axios';
 import '../App.css';
 
 const UrlList = () => {
-    const [urls, setUrls] = useState([]);
+    const [urls, setUrls] = useState([]);// State to hold the list of URLs
 
+    // useEffect hook to fetch URLs when the component mounts
     useEffect(() => {
         const fetchUrls = async () => {
             try{
+                // Make a GET request to fetch all URLs
                 const response = await axios.get('http://localhost:8080/api/urls');
                 setUrls(response.data);
             } catch (error) {
@@ -18,6 +20,7 @@ const UrlList = () => {
         fetchUrls();
     },[]);
 
+    //Function for deleting a URL
     const deleteUrl = async (id) => {
         try {
             await axios.delete(`http://localhost:8080/api/urls/${id}`);
