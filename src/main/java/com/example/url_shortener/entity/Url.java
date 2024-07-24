@@ -24,7 +24,8 @@ public class Url {
         // Empty constructor
     }
 
-    // Getters and Setters - Methods to Retrieve the original values of the fields and Set up or Update the new values
+    // Getters and Setters -
+    // Methods to Retrieve the original values of the fields and Set up or Update the new values
     public Long getId() {
         return id;
     }

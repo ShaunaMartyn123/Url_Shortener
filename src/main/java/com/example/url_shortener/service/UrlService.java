@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UrlService {
@@ -64,6 +61,16 @@ public class UrlService {
             } else {
                 sb.setLength(0);
             }
+        }
+    }
+//////////////////////////////////////////////////////////////////////////////////
+    public boolean deleteUrlById(Long id) {
+        Optional<Url> url = urlRepository.findById(id);
+        if (url.isPresent()) {
+            urlRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
         }
     }
 }
