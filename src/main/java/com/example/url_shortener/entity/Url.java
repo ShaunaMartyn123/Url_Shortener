@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Url_shortener {
+public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +15,13 @@ public class Url_shortener {
     private String shortenedUrl;
 
     // Allows creating an instance with specified original and shortened URLs
-    public Url_shortener (String originalUrl, String shortenedUrl) {
+    public Url (String originalUrl, String shortenedUrl) {
         this.originalUrl = originalUrl;
         this.shortenedUrl = shortenedUrl;
     }
 
-    public Url_shortener() {
-        // Empty constructor 
+    public Url() {
+        // Empty constructor
     }
 
     // Getters and Setters - Methods to Retrieve the original values of the fields and Set up or Update the new values

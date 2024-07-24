@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import UrlForm from './components/UrlForm';
+import UrlList from './components/UrlList';
 
-function App() {
+const App = () => {
+  const [shortenedUrl, setShortenedUrl] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <h1>URL Shortener</h1>
+        <UrlForm onShorten={setShortenedUrl} />
+        {shortenedUrl && (
+            <div>
+              <h2>Shortened URL:</h2>
+              <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">
+                {shortenedUrl}
+              </a>
+            </div>
+        )}
+        <UrlList />
+      </div>
   );
-}
+};
 
 export default App;
