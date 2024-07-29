@@ -1,27 +1,13 @@
-# Use a base image with Java 22
-FROM openjdk:22-jdk
+FROM openjdk:17-jdk-alpine
 
-# Set the working directory
-WORKDIR /app
+# Define a build argument for the JAR file location
+ARG JAR_FILE=target/Url_shortener-0.0.1-SNAPSHOT.jar
 
-# Copy the Maven wrapper and configuration files
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
+# Copy the JAR file into the container
+COPY ${JAR_FILE} /Url_shortener.jar
 
-# Download Maven dependencies
-RUN ./mvnw dependency:go-offline
-
-# Copy the source code
-COPY src ./src
-
-# Build the project
-RUN ./mvnw clean package -DskipTests
-
-# Copy the built jar to the final image
-COPY target/Url_shortener-0.0.1-SNAPSHOT.jar /app/url-shortener.jar
-
-# Expose the port your application will run on
+# Expose port 8080
 EXPOSE 8080
 
-# Command to run your application
-ENTRYPOINT ["java", "-jar", "url-shortener.jar"]
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "/Url_shortener.jar"]
