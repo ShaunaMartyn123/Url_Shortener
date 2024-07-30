@@ -40,8 +40,8 @@ Ensure you have the following installed on your machine:
 3. **Setup the backend:**
 
     ```bash
-    cd ../backend
-    ./mvnw clean install
+    cd Url_shortener
+    mvnw clean install
     ```
 
 ## Running the Application
