@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///url_shortener
+    url: jdbc:postgresql:///instancepostgresql1
     username: shauna
     password: 1111
     hikari:
