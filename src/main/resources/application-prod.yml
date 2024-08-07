@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///instancepostgresql1
+    url: jdbc:postgresql:///postgres
     username: postgres
     password: 1111
     hikari:
