@@ -24,7 +24,7 @@ public class UrlController {
 
     // Handles HTTP POST requests for "/api/shorten" to create a shortened URL.
     @PostMapping("/shorten")
-    public String createShortenedUrl(@RequestParam String originalUrl) {
+    public String createShortenedUrl(@RequestBody String originalUrl) {
         return urlService.createShortenedUrl(originalUrl);
     }
 ////////////////////////////////////////////////////////////////////////////////////////
