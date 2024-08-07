@@ -1,16 +1,10 @@
-FROM openjdk:17-jdk-alpine
+FROM maven:3.9.6 as builder
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Define a build argument for the JAR file location
-ARG JAR_FILE=target/Url_shortener-0.0.1-SNAPSHOT.jar
-
-# Copy the JAR file into the container
-COPY ${JAR_FILE} /Url_shortener.jar
-
-# Expose port 8080
+FROM eclipse-temurin:17.0.11_9-jre-focal
+COPY --from=builder /app/target/Url_shortener-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "/Url_shortener.jar"]
-
-
-
+ENTRYPOINT ["java","-jar","/app.jar"]
